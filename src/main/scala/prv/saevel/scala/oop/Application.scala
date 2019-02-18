@@ -50,6 +50,7 @@ object Application {
     }
   }
 
+
   private def printAllCars = {
     for (car <- rentalService.allCars) {
       println("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + "]")
