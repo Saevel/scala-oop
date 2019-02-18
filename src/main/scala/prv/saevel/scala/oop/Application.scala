@@ -53,9 +53,12 @@ object Application {
 
   private def printAllCars = {
     for (car <- rentalService.allCars) {
-      println("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + "]")
+      printCar(car)
     }
   }
+
+  private def printCar(car: Car): Unit =
+    println("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + "]")
 
   private def readAndSaveCar = {
     println("Specify brand: ")
@@ -74,9 +77,13 @@ object Application {
 
   private def printAllPeople = {
     for (person <- rentalService.allPeople) {
-      println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
+      printPerson(person)
     }
   }
+
+  private def printPerson(person: Person): Unit =
+    println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
+
 
   private def readAndSavePerson = {
     println("Specify name: ")
