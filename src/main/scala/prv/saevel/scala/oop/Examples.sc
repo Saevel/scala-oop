@@ -94,4 +94,31 @@ implicit val intAdder = new Adder[Int]{
   override def zero = 0
 }
 
+implicit val doubleAdder = new Adder[Double] {
+  override def add(a: Double, b: Double) = a + b
+
+  override def zero = 0.0
+}
+
 sum(intList)
+
+sum(doubleList)
+
+val numeric: Numeric[Int] = ???
+
+implicit class Square[T](i: T)(implicit numeric: Numeric[T]){
+  def cube: T = numeric.times(i, numeric.times(i, i))
+}
+
+3.cube
+
+2.5.cube
+
+trait JsonProtocol[T]{
+  def toJson(t:T): String
+  def fromJson(s: String): T
+}
+
+implicit class Jsonizable[T](t: T)(implicit protocol: JsonProtocol[T]){
+
+}

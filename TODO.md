@@ -43,4 +43,26 @@ Welcome to the second part of the Scala training - OOP in Scala
     
     * "findByModel" that takes a String and returns a List of Cars
     
-5. Uncomment the implementation in the InMemoryCarRepository and InMemoryPersonRepository            
+5. Uncomment the implementation in the InMemoryCarRepository and InMemoryPersonRepository
+
+6. Modify the Context class so that InMemory implementations are assigned to proper repositories
+
+7. Uncomment the "printPerson" and "printCar" methods in the "Application" class and run the program to verify it works correctly
+
+
+=======
+
+8. Implement the "apply" method in the "Average" class so that it calculates the Average for any type with 
+"Addition" and "DivisionByInt" typeclasses defined
+
+9. Implement the "addition" and "division" typeclass instances in the "ComplexNumber" companion object according to complex
+number algebra
+
+10. Run the "AverageTest" to verify the correctness of your implementation
+    
+11. Write an implicit class to add a method called "modulus" onto the ComplexNumber that would calculate its modulus
+according to the formula:
+
+    modulus(z) = square_root[Re(z) * Re(z) + Im(z) * Im(z)]
+    
+12. Uncomment and run the contents of the ModulusTest to verify the correctness of your implementation               
