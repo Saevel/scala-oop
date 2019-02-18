@@ -12,10 +12,12 @@ class ModulusTest extends WordSpec with Matchers with PropertyChecks with Comple
 
   implicit val tolerantDoubleEquality: Equality[Double] = TolerantNumerics.tolerantDoubleEquality(0.01)
 
+  /*
   "Modulus" should {
 
     "be implemented according to actual complex numbers algebra" in forAll(complexNumbers){ c =>
       c.modulus should equal(Math.sqrt(c.real * c.real + c.imaginary * c.imaginary))
     }
   }
+  */
 }
