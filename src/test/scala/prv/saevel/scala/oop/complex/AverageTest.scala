@@ -7,9 +7,11 @@ import org.scalactic.{Equality, TolerantNumerics}
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.{Matchers, WordSpec}
 import org.scalatest.prop.PropertyChecks
+import prv.saevel.scala.oop.ComplexNumberGenerator
+import prv.saevel.scala.oop.complex._
 
 @RunWith(classOf[JUnitRunner])
-class AverageTest extends WordSpec with Matchers with PropertyChecks {
+class AverageTest extends WordSpec with Matchers with PropertyChecks with ComplexNumberGenerator {
 
   implicit def additionGenerator[T](implicit numeric: Numeric[T]): Addition[T] = new Addition[T] {
     override def zero: T = numeric.zero
@@ -34,11 +36,6 @@ class AverageTest extends WordSpec with Matchers with PropertyChecks {
   }
 
   private val listsOfDoubles = Gen.listOf(arbitrary[Double])
-
-  private val complexNumbers: Gen[ComplexNumber] = for {
-    real <- arbitrary[Double]
-    imaginary <- arbitrary[Double]
-  } yield new ComplexNumber(real, imaginary)
 
   private val listsOfComplexNumbers = Gen.listOf(complexNumbers)
 
