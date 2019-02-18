@@ -57,8 +57,9 @@ object Application {
     }
   }
 
-  private def printCar(car: Car): Unit =
-    println("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + "]")
+  // TODO: Uncomment when ready
+  private def printCar(car: Car): Unit = ???
+  //  println("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + "]")
 
   private def readAndSaveCar = {
     println("Specify brand: ")
@@ -81,8 +82,9 @@ object Application {
     }
   }
 
-  private def printPerson(person: Person): Unit =
-    println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
+  // TODO: Uncomment when ready
+  private def printPerson(person: Person): Unit = ???
+  //  println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
 
 
   private def readAndSavePerson = {

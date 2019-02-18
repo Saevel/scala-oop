@@ -1,6 +1,6 @@
 package prv.saevel.scala.oop
 
-import prv.saevel.scala.oop.cars.{InMemoryCarRepository, RentalService}
+import prv.saevel.scala.oop.cars.{CarRepository, InMemoryCarRepository, RentalService}
 import prv.saevel.scala.oop.people.InMemoryPersonRepository
 
 object Context {
