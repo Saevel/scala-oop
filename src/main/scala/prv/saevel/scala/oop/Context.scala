@@ -6,9 +6,9 @@ import prv.saevel.scala.oop.persistence.Repository
 
 object Context {
 
-  implicit val carRepository: CarRepository = ???
+  implicit val carRepository: CarRepository = InMemoryCarRepository
 
-  implicit val personRepository: PersonRepository = ???
+  implicit val personRepository: PersonRepository = InMemoryPersonRepository
 
   implicit val rentalService = new RentalService
 }

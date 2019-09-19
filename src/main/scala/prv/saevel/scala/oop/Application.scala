@@ -1,8 +1,11 @@
 package prv.saevel.scala.oop
 
+import java.util.Scanner
+
 import prv.saevel.scala.oop.cars.Car
 import prv.saevel.scala.oop.people.Person
 
+import scala.io.StdIn
 object Application {
 
   import prv.saevel.scala.oop.Context._
@@ -12,25 +15,25 @@ object Application {
     println("What do you want to do: \n A. Add a person \n B. List all people \n C. Add a car \n D. List all cars " +
       "\n E. Check a rental \n Other char: Exit")
 
-    val input = Console.readChar().toUpper
-
-    if(input == 'A'){
+    val input = new Scanner(System.in).next.toUpperCase.toString
+    println(input)
+    if(input == "A"){
       readAndSavePerson
       main(args)
     }
-    else if(input == 'B'){
+    else if(input == "B"){
       printAllPeople
       main(args)
     }
-    else if(input == 'C'){
+    else if(input == "C"){
       readAndSaveCar
       main(args)
     }
-    else if(input == 'D'){
+    else if(input == "D"){
       printAllCars
       main(args)
     }
-    else if(input == 'E'){
+    else if(input == "E"){
       readAndCheckRental
       main(args)
     }
@@ -39,9 +42,9 @@ object Application {
 
   private def readAndCheckRental = {
     println("Specify person id: ")
-    val personId = Console.readLong
+    val personId = new Scanner(System.in).nextLong()
     println("Specify car id: ")
-    val carId = Console.readLong
+    val carId = new Scanner(System.in).nextLong()
 
     if (rentalService.rentalPossible(carId, personId)) {
       println("Rental possible.")
@@ -63,11 +66,11 @@ object Application {
 
   private def readAndSaveCar = {
     println("Specify brand: ")
-    val brand = Console.readLine
+    val brand = new Scanner(System.in).toString()
     println("Specify model: ")
-    val model = Console.readLine
+    val model = new Scanner(System.in).toString()
     println("Specify owner: ")
-    val owner = Console.readLine
+    val owner = new Scanner(System.in).toString()
 
     if (rentalService.addCar(Car(brand, model, owner)).isDefined) {
       println("Added new car")
@@ -83,16 +86,16 @@ object Application {
   }
 
   // TODO: Uncomment when ready
-  private def printPerson(person: Person): Unit = ???
-  //  println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
+  private def printPerson(person: Person): Unit = {
+    println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
+  }
 
 
   private def readAndSavePerson = {
     println("Specify name: ")
-    val name = Console.readLine
+    val name = new Scanner(System.in).nextLine()
     println("Specify surname: ")
-    val surname = Console.readLine
-
+    val surname = new Scanner(System.in).nextLine()
     if (rentalService.addPerson(Person(name, surname)).isDefined) {
       println("Added new person")
     } else {
