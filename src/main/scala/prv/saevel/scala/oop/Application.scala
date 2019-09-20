@@ -1,14 +1,11 @@
 package prv.saevel.scala.oop
 
 import java.util.Scanner
-
-import prv.saevel.scala.oop.Application.printCar
 import prv.saevel.scala.oop.cars.Car
 import prv.saevel.scala.oop.people.Person
 
-import scala.io.StdIn
-object Application {
 
+object Application {
   import prv.saevel.scala.oop.Context._
 
   def main(args: Array[String]): Unit = {
@@ -44,6 +41,7 @@ object Application {
     }
     else {}
   }
+
   private def returnCar ={
     println("Which car do you want to return?")
     printAllOccupiedCars()
@@ -59,23 +57,14 @@ object Application {
       }
       l+=1
     }
-    for (car <-rentalService.allCars){
-      if (car.id == carId){
-        car.isFree = true
-        car.owner = ""
-        println("You successfuly returned: ")
-        printCar(car)
-      }
-    }
   }
-
 
   private def readAndCheckRental = {
     printAllPeople(true)
     println("Specify number: ")
-    var z:Int = 0
+    var z = 0
     var selectedPersonId:Long = 0
-    var personSelector:Int = new Scanner(System.in).nextInt()
+    val personSelector:Int = new Scanner(System.in).nextInt()
     for (person<-rentalService.allPeople){
       if (z == personSelector){
         selectedPersonId = person.id
@@ -84,9 +73,9 @@ object Application {
     }
     printAllCars(true)
     println("Specify number: ")
-    var k =0
+    var k = 0
     var selectedCarId:Long = 0
-    var carSelector = new Scanner(System.in).nextInt()
+    val carSelector = new Scanner(System.in).nextInt()
     for (car<-rentalService.allCars){
       if (k==carSelector){
         selectedCarId = car.id
@@ -103,7 +92,7 @@ object Application {
       }
       println("1 - YES")
       println("2 - NO")
-      var answer = new Scanner(System.in).nextLine()
+      val answer = new Scanner(System.in).nextLine()
       if (answer == "1"){
         rentACar(selectedCarId,selectedPersonId)
       }else{
@@ -127,6 +116,7 @@ object Application {
       }
     }
   }
+
   private def printAllCars(withNumbers:Boolean = false) = {
     var i = 0
     if (withNumbers == true) {
@@ -141,6 +131,7 @@ object Application {
       }
     }
   }
+
   private def printAllOccupiedCars(withNumbers:Boolean = false) = {
     var i = 0
     for (car <- rentalService.allCars) {
@@ -152,26 +143,41 @@ object Application {
     }
   }
 
-
-
-
   // TODO: Uncomment when ready
-  private def printCar(car: Car): Unit =
-    {print("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + ", isFree: ")
-      if(car.isFree == true){
+  private def printCar(car: Car): Unit = {
+    print("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + ", isFree: ")
+    if(car.isFree == true){
       println("YES]")}
       else{
       println("NO]")
   }}
 
+  private def checkIfEmpty(input:String):Boolean = {
+    if (input.length!=0){
+      false
+    }else{
+      println("This position can't be empty.")
+      true
+    }
+  }
+
   private def readAndSaveCar = {
-    println("Specify brand: ")
-    val brand = new Scanner(System.in).nextLine()
-    println("Specify model: ")
-    val model = new Scanner(System.in).nextLine()
+    var empty:Boolean = true
+    var brand:String = ""
+    var model:String = ""
+    while(empty==true) {
+      println("Specify brand: ")
+      brand = new Scanner(System.in).nextLine()
+      empty = checkIfEmpty(brand)
+    }
+    empty = true
+    while (empty==true) {
+      println("Specify model: ")
+      model = new Scanner(System.in).nextLine()
+      empty = checkIfEmpty(model)
+    }
     println("Specify owner: ")
     val owner = new Scanner(System.in).nextLine()
-
     if (rentalService.addCar(Car(brand, model, owner, true)).isDefined) {
       println("Added new car")
     } else {
@@ -180,7 +186,6 @@ object Application {
   }
 
   private def printAllPeople(withNumbers:Boolean=false) = {
-
     var i = 0
     if (withNumbers == true) {
       for (person <- rentalService.allPeople) {
@@ -198,15 +203,24 @@ object Application {
 
   // TODO: Uncomment when ready
   private def printPerson(person: Person): Unit = {
-    println("Person[id = " + person.id + ", name = " + person.name + ", surname =" + person.surname + "]")
+    println("Person[id = " + person.id + ", name = " + person.name + ", surname = " + person.surname + "]")
   }
 
-
   private def readAndSavePerson = {
-    println("Specify name: ")
-    val name = new Scanner(System.in).nextLine()
-    println("Specify surname: ")
-    val surname = new Scanner(System.in).nextLine()
+    var name:String = ""
+    var surname:String = ""
+    var empty = true
+    while (empty==true){
+      println("Specify name: ")
+      name = new Scanner(System.in).nextLine()
+      empty = checkIfEmpty(name)
+    }
+    empty = true
+    while (empty==true){
+      println("Specify surname: ")
+      surname = new Scanner(System.in).nextLine()
+      empty = checkIfEmpty(surname)
+    }
     if (rentalService.addPerson(Person(name, surname)).isDefined) {
       println("Added new person")
     } else {

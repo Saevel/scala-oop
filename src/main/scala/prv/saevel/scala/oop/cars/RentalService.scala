@@ -14,8 +14,6 @@ class RentalService(implicit carRepository: CarRepository, personRepository: Per
         isFree =false
       }
     }
-
-
     val personOption = personRepository.findById(personId)
     carOption.isDefined && personOption.isDefined && isFree==true
   }
