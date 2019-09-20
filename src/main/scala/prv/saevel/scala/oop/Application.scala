@@ -42,20 +42,20 @@ object Application {
     else {}
   }
 
-  private def returnCar ={
-    println("Which car do you want to return?")
-    printAllOccupiedCars()
-    println("Please enter car number: ")
-    val carId = new Scanner(System.in).nextLong()
-    var l = 0
-    for (car<-rentalService.allCars){
-      if (l==carId){
-        car.isFree = true
-        car.owner = ""
-        println("You successfuly returned: ")
-        printCar(car)
+  private def returnCar = {
+    if (!printAllOccupiedCars()) {
+      println("Which car do you want to return? Please enter car number: ")
+      val carId = new Scanner(System.in).nextLong()
+      var l = 0
+      for (car <- rentalService.allCars) {
+        if (l == carId) {
+          car.isFree = true
+          car.owner = ""
+          println("You successfuly returned: ")
+          printCar(car)
+        }
+        l += 1
       }
-      l+=1
     }
   }
 
@@ -132,15 +132,18 @@ object Application {
     }
   }
 
-  private def printAllOccupiedCars(withNumbers:Boolean = false) = {
+  private def printAllOccupiedCars(withNumbers:Boolean = false):Boolean = {
     var i = 0
+    var noOccupiedCars = true
     for (car <- rentalService.allCars) {
       if (car.isFree == false) {
         print(i + ") ")
         printCar(car)
         i += 1
+        noOccupiedCars = false
       }
     }
+    return noOccupiedCars
   }
 
   // TODO: Uncomment when ready
