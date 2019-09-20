@@ -12,5 +12,5 @@ class Person private( val id:Long,
 }
 
 object Person {
-  def apply(name: String, surname: String): Person = new Person(Random.nextLong(),name,surname)
+  def apply(name: String, surname: String): Person = new Person(Math.abs(Random.nextLong()),name,surname)
 }
