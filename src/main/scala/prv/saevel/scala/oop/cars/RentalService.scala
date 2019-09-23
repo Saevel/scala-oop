@@ -8,10 +8,10 @@ class RentalService(implicit carRepository: CarRepository, personRepository: Per
     val carOption = carRepository.findById(carId)
     var isFree:Boolean = true
       for(car<-carOption){
-      if (car.isFree ==true){
-        isFree =true
-      }else{
-        isFree =false
+      if (car.isFree){
+        isFree = car.isFree
+      } else{
+        isFree = false
       }
     }
     val personOption = personRepository.findById(personId)

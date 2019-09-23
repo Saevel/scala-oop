@@ -43,7 +43,7 @@ object Application {
   }
 
   private def returnCar = {
-    if (!printAllOccupiedCars()) {
+    if (!printAllOccupiedCars) {
       println("Which car do you want to return? Please enter car number: ")
       val carId = new Scanner(System.in).nextLong()
       var l = 0
@@ -86,7 +86,7 @@ object Application {
       println("Rental possible.")
       print("Do you want to rent ")
       for (car<-rentalService.allCars){
-        if (selectedCarId==car.id&&car.isFree == true){
+        if (selectedCarId==car.id && car.isFree == true){
           printCar(car)
         }
       }
@@ -95,7 +95,7 @@ object Application {
       val answer = new Scanner(System.in).nextLine()
       if (answer == "1"){
         rentACar(selectedCarId,selectedPersonId)
-      }else{
+      } else{
       }
     } else {
       println("Rental impossible")
@@ -104,9 +104,9 @@ object Application {
 
   private def rentACar(carId:Long,personId:Long) = {
     for (car<-rentalService.allCars){
-      if (carId==car.id&&car.isFree == true){
+      if (carId==car.id && car.isFree == true){
         for (person<-rentalService.allPeople){
-          if (personId==person.id){
+          if (personId == person.id){
             car.isFree = false
             car.owner = person.surname
             println(car)
@@ -125,18 +125,18 @@ object Application {
         printCar(car)
         i+=1
       }
-      }else{
+      } else{
       for (car <- rentalService.allCars) {
         printCar(car)
       }
     }
   }
 
-  private def printAllOccupiedCars(withNumbers:Boolean = false):Boolean = {
+  private def printAllOccupiedCars:Boolean = {
     var i = 0
     var noOccupiedCars = true
     for (car <- rentalService.allCars) {
-      if (car.isFree == false) {
+      if (!car.isFree) {
         print(i + ") ")
         printCar(car)
         i += 1
@@ -146,10 +146,10 @@ object Application {
     return noOccupiedCars
   }
 
-  // TODO: Uncomment when ready
+
   private def printCar(car: Car): Unit = {
     print("Car[id = " + car.id + ", model = " + car.model + ", brand = " + car.brand + ", owner = " + car.owner + ", isFree: ")
-    if(car.isFree == true){
+    if(car.isFree){
       println("YES]")}
       else{
       println("NO]")
@@ -158,7 +158,7 @@ object Application {
   private def checkIfEmpty(input:String):Boolean = {
     if (input.length!=0){
       false
-    }else{
+    } else{
       println("This position can't be empty.")
       true
     }
@@ -168,13 +168,13 @@ object Application {
     var empty:Boolean = true
     var brand:String = ""
     var model:String = ""
-    while(empty==true) {
+    while(empty) {
       println("Specify brand: ")
       brand = new Scanner(System.in).nextLine()
       empty = checkIfEmpty(brand)
     }
     empty = true
-    while (empty==true) {
+    while (empty) {
       println("Specify model: ")
       model = new Scanner(System.in).nextLine()
       empty = checkIfEmpty(model)
@@ -190,13 +190,13 @@ object Application {
 
   private def printAllPeople(withNumbers:Boolean=false) = {
     var i = 0
-    if (withNumbers == true) {
+    if (withNumbers) {
       for (person <- rentalService.allPeople) {
         print(i + ") ")
         printPerson(person)
         i += 1
       }
-    }else
+    } else
       {
         for (person <- rentalService.allPeople) {
           printPerson(person)
@@ -204,7 +204,6 @@ object Application {
       }
   }
 
-  // TODO: Uncomment when ready
   private def printPerson(person: Person): Unit = {
     println("Person[id = " + person.id + ", name = " + person.name + ", surname = " + person.surname + "]")
   }
@@ -213,13 +212,13 @@ object Application {
     var name:String = ""
     var surname:String = ""
     var empty = true
-    while (empty==true){
+    while (empty){
       println("Specify name: ")
       name = new Scanner(System.in).nextLine()
       empty = checkIfEmpty(name)
     }
     empty = true
-    while (empty==true){
+    while (empty){
       println("Specify surname: ")
       surname = new Scanner(System.in).nextLine()
       empty = checkIfEmpty(surname)
