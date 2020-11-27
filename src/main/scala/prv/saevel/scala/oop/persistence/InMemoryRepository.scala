@@ -4,11 +4,11 @@ trait InMemoryRepository[ID, T <: PrimaryKey[ID]] extends Repository[ID, T] {
 
   protected var items: List[T] = List.empty
 
-  override def save(t: T): Option[T] = if (items.exists(t => t.id == t.id)) {
+  override def save(z: T): Option[T] = if (items.exists(t => z.id == t.id)) {
     None
   } else {
-    items = items :+ t
-    Some(t)
+    items = items :+ z
+    Some(z)
   }
 
   override def findAll: List[T] = items
